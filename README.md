@@ -1,4 +1,4 @@
-This is a disassembly of the following Game Boy games:
+This is a work‐in‐progress disassembly of the following Game Boy games:
 
 * Mega Man: Dr. Wily’s Revenge
 * Mega Man III
