@@ -2179,7 +2179,147 @@ INCBIN "base1.gb",$34D3,$3979-$34D3
 	freespace $3979
 
 SECTION "bank1",ROMX,BANK[$1]
-INCBIN "base1.gb",$4000,$574E-$4000
+Function4000:
+	call Function411E
+	call Function412F
+	ret
+
+Data4007:
+INCBIN "base1.gb",$4007,$40B7-$4007
+
+Function40B7:
+	call Function411E
+	call Function412F
+	xor a
+	ld [$C201],a
+	ld [$C200],a
+	ld a,[$DFA0]
+	swap a
+	and $F0
+	ld l,a
+	ld h,0
+	ld de,Data4007
+	add hl,de
+	ld a,[hli]
+	ld [$C22B],a
+	ld a,[hli]
+	ld [$C22C],a
+	ld a,[hli]
+	ld [$C22D],a
+	ld de,$C203
+	ld a,[hli]
+	ld [de],a
+	ld b,5
+.loop
+	inc e
+	ld [de],a
+	ld a,[hli]
+	dec b
+	jr nz,.loop
+	dec hl
+	ld a,[hli]
+	ld [$C22E],a
+	ld a,[hli]
+	ld [$C235],a
+	ld de,$C22F
+	ld a,$C3 ; jp?
+	ld [de],a
+	inc e
+	ld a,[hli]
+	ld [de],a
+	inc e
+	ld a,[hli]
+	ld [de],a
+	inc e
+	ld a,$C3 ; jp?
+	ld [de],a
+	inc e
+	ld a,[hli]
+	ld [de],a
+	inc e
+	ld a,[hli]
+	ld [de],a
+	ld b,3
+	ld hl,$C239
+.loop2
+	ld [hl],0
+	ld a,$20
+	add a,l
+	ld l,a
+	dec b
+	jr nz,.loop2
+	call $4fca
+	jp $536c
+
+Function411E:
+	ld de,Function4140
+	ld a,e
+	ld [$C0AB],a
+	ld a,d
+	ld [$C0AC],a
+	ld a,$C3 ; jp?
+	ld [$C0AA],a
+	ret
+
+Function412F:
+	ld de,$42ae
+	ld a,e
+	ld [$C0AE],a
+	ld a,d
+	ld [$C0AF],a
+	ld a,$C3 ; jp?
+	ld [$C0AD],a
+	ret
+
+Function4140:
+	ld hl,$c201
+	ld a,[hl]
+	or a
+	jr z,.next
+	dec [hl]
+.next
+	ld a,[$DFB1]
+	and $53
+	ret nz
+	ld a,[$DFA0]
+	cp 8
+	jr nz,.next2
+	ld a,[$D840]
+	jr .next3
+.next2
+	ld a,[$D83F]
+.next3
+	bit 1,a
+	ret z
+	ld a,[$C200]
+	ld l,$2c
+	cp [hl]
+	ret nc
+	ld a,[$DFA0]
+	or a
+	jr z,.next4
+	ld de,$DFA3
+	add a,e
+	ld e,a
+	ld a,0
+	adc a,d
+	ld d,a
+	ld a,[de]
+	or a
+	ret z
+.next4
+	ld l,1
+	ld a,[hl]
+	cp 8
+	ret nc
+	ld [hl],$10
+	call $41f1
+	call $43e8
+	call $41b8
+	ld a,[$DFA0]
+	jp $c22f
+
+INCBIN "base1.gb",$4190,$574E-$4190
 
 ; -----
 
