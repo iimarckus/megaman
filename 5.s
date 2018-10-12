@@ -4,6 +4,15 @@ bankswitch: MACRO
 	rst $20
 ENDM
 
+freespace: MACRO
+	incbin "base5.gb",\1,(\1 / $4000 + 1) * $4000 - \1
+ENDM
+
+bankword: MACRO
+	dw \1
+	db BANK(\1)
+ENDM
+
 ; $DF3D is the number of P chips
 
 SECTION "func0",ROM0[0]
@@ -418,7 +427,7 @@ Function35E: ; $35E
 	ld a, [$ff8a]
 	ld e, a
 	ld d, $00
-	ld hl, $038b
+	ld hl, Pointers38B
 	add hl, de
 	add hl, de
 	add hl, de
@@ -437,7 +446,39 @@ Function35E: ; $35E
 	bankswitch
 	ret
 
-INCBIN "base5.gb",$38B,$4FA-$38B
+Pointers38B:
+	dw Function3D3
+	db 1
+	bankword Function4F9D
+	bankword Function4E2B
+	bankword Function3400C
+	bankword Function4E21
+	bankword Function44F4
+	bankword Function70C2
+	bankword Function44AB
+	bankword Function68010
+	bankword Function4002B
+	bankword Function34048
+	bankword Function1000F
+	bankword Function40028
+	bankword Function10006
+	dw Function2268
+	db 1
+	bankword Function5FDF
+	bankword Function70010
+	bankword Function64013
+	dw Function3D3
+	db 1
+	bankword Function4F8E
+	bankword FunctionC003
+	bankword Function24003
+	bankword Function78020
+	bankword Function14006
+
+Function3D3:
+	ret
+
+INCBIN "base5.gb",$3D4,$4FA-$3D4
 
 Function4FA: ; $4FA
 	di
@@ -601,10 +642,23 @@ Function1A69: ; $1A69
 	jr nz,.loop
 	ret
 
-INCBIN "base5.gb",$1A7D,$4000-$1A7D
+INCBIN "base5.gb",$1A7D,$2268-$1A7D
+
+Function2268:
+INCBIN "base5.gb",$2268,$3ec9-$2268
+
+Function3EC9:
+INCBIN "base5.gb",$3ec9,$3ee1-$3ec9
+
+	freespace $3ee1
 
 SECTION "bank1",ROMX,BANK[$1]
-INCBIN "base5.gb",$4000,$4AE1-$4000
+INCBIN "base5.gb",$4000,$44AB-$4000
+
+Function44AB:
+INCBIN "base5.gb",$44ab,$44f4-$44ab
+Function44F4:
+INCBIN "base5.gb",$44f4,$4AE1-$44f4
 
 Function4AE1:
 	ld hl,$DF34
@@ -759,19 +813,136 @@ Function4AE1:
 
 	ret
 
-INCBIN "base5.gb",$4BBB,$8000-$4BBB
+INCBIN "base5.gb",$4BBB,$4e21-$4BBB
+Function4E21:
+	ld a, $FF
+	ld hl, $4e40
+	ld b, 0
+	jp Function4FEF
+
+Function4E2B:
+INCBIN "base5.gb",$4e2b,$4f8e-$4e2b
+Function4F8E:
+INCBIN "base5.gb",$4f8e,$4f9d-$4f8e
+Function4F9D:
+INCBIN "base5.gb",$4f9d,$4fef-$4f9d
+Function4FEF:
+INCBIN "base5.gb",$4fef,$5fdf-$4fef
+Function5FDF:
+INCBIN "base5.gb",$5fdf,$70c2-$5fdf
+Function70C2:
+INCBIN "base5.gb",$70c2,$7d08-$70c2
+
+	freespace $7D08
 
 SECTION "bank2",ROMX,BANK[$2]
 INCBIN "base5.gb",$8000,$4000
 
 SECTION "bank3",ROMX,BANK[$3]
-INCBIN "base5.gb",$C000,$4000
+FunctionC000:
+	jp FunctionF9FC
+
+FunctionC003:
+	jp FunctionFAA3
+
+FunctionC006:
+	jp FunctionC778
+
+FunctionC009:
+	jp FunctionE8AC
+
+FunctionC00C:
+	jp FunctionD1A1
+
+FunctionC00F:
+	jp FunctionDB36
+
+FunctionC012:
+	jp FunctionF12E
+
+FunctionC015:
+	jp FunctionF9C9
+
+FunctionC018:
+	jp FunctionF9C9
+
+FunctionC01B:
+INCBIN "base5.gb",$C01B,$C778-$C01B
+FunctionC778:
+INCBIN "base5.gb",$C778,$D1A1-$C778
+FunctionD1A1:
+INCBIN "base5.gb",$D1A1,$DB36-$D1A1
+FunctionDB36:
+INCBIN "base5.gb",$DB36,$E8AC-$DB36
+FunctionE8AC:
+INCBIN "base5.gb",$E8AC,$F12E-$E8AC
+FunctionF12E:
+INCBIN "base5.gb",$F12E,$F9C9-$F12E
+FunctionF9C9:
+INCBIN "base5.gb",$F9C9,$F9FC-$F9C9
+FunctionF9FC:
+INCBIN "base5.gb",$f9fc,$fa99-$f9fc
+DataFA99:
+	dw $4EA3
+	dw $59B3
+	dw $62CE
+	dw $6F7A
+	dw $7743
+
+FunctionFAA3:
+	ld a, b
+	dec a
+	ld de, DataFA99
+	jp Function171
+
+	freespace $FAAB
 
 SECTION "bank4",ROMX,BANK[$4]
-INCBIN "base5.gb",$10000,$4000
+Function10000:
+	jp $405D
+
+Function10003:
+	jp $53d7
+
+Function10006:
+	jp $6b9e
+
+Function10009:
+	jp $50ef
+
+Function1000C:
+	jp $51db
+
+Function1000F:
+	jp $4069
+
+Function10012:
+	jp $63d6
+
+Function10015:
+	jp $63d0
+
+Function10018:
+	jp $7437
+
+Function1001B:
+	jp $743b
+
+Function1001E:
+	jp $743f
+
+Function10021:
+	jp $7443
+
+Function10024:
+	jp $5090
+
+INCBIN "base5.gb",$10027,$14000-$10027
 
 SECTION "bank5",ROMX,BANK[$5]
-INCBIN "base5.gb",$14000,$4000
+INCBIN "base5.gb",$14000,$6
+Function14006:
+INCBIN "base5.gb",$14006,$18000-$14006
 
 SECTION "bank6",ROMX,BANK[$6]
 INCBIN "base5.gb",$18000,$4000
@@ -783,28 +954,257 @@ SECTION "bank8",ROMX,BANK[$8]
 INCBIN "base5.gb",$20000,$4000
 
 SECTION "bank9",ROMX,BANK[$9]
-INCBIN "base5.gb",$24000,$4000
+Function24000:
+	jp $7c9a
+
+Function24003:
+	jp $7ee4
+
+Function24006:
+	jp $42c3
+
+Function24009:
+	jp $464e
+
+Function2400c:
+	jp $4ca0
+
+Function2400f:
+	jp $5574
+
+Function24012:
+	jp $5d28
+
+Function24015:
+	jp $6650
+
+Function24018:
+	jp $7802
+
+Function2401B:
+INCBIN "base5.gb",$2401b,$28000-$2401b
 
 SECTION "bankA",ROMX,BANK[$A]
 INCBIN "base5.gb",$28000,$4000
 
 SECTION "bankB",ROMX,BANK[$B]
-INCBIN "base5.gb",$2C000,$4000
+Function2C000:
+	jp $4b3c
+
+Function2C003:
+	jp $4DCA
+
+Function2C006:
+	jp $5EB2
+
+Function2C009:
+INCBIN "base5.gb",$2C009,$30000-$2C009
 
 SECTION "bankC",ROMX,BANK[$C]
-INCBIN "base5.gb",$30000,$4000
+Function30000:
+	jp $417b
+
+INCBIN "base5.gb",$30003,$34000-$30003
 
 SECTION "bankD",ROMX,BANK[$D]
-INCBIN "base5.gb",$34000,$4000
+Function34000:
+	jp $7879
+
+Function34003:
+	jp $5470
+
+Function34006:
+	jp $573B
+
+Function34009:
+	jp $515A
+
+Function3400C:
+	jp $5215
+
+Function3400F:
+	jp $52B3
+
+Function34012:
+	jp $4fe2
+
+Function34015:
+	jp $4c59
+
+Function34018:
+	jp $4bdf
+
+Function3401B:
+	jp $7f45
+
+Function3401E:
+	jp $581b
+
+Function34021:
+	jp $58ba
+
+Function34024:
+	jp $5c7e
+
+Function34027:
+	jp $60ff
+
+Function3402A:
+	jp $66d0
+
+Function3402D:
+	jp $690d
+
+Function34030:
+	jp $6b50
+
+Function34033:
+	jp $6e37
+
+Function34036:
+	jp $6ec7
+
+Function34039:
+	jp $6f44
+
+Function3403C:
+	jp $72a2
+
+Function3403F:
+	jp $75c1
+
+Function34042:
+	jp $79de
+
+Function34045:
+	jp $7b56
+
+Function34048:
+	jp $7db4
+
+Function3404B:
+	jp $4e8e
+
+INCBIN "base5.gb",$3404e,$38000-$3404e
 
 SECTION "bankE",ROMX,BANK[$E]
-INCBIN "base5.gb",$38000,$4000
+Function38000:
+	jp $4e19
+
+Function38003:
+	jp $4ed0
+
+Function38006:
+	jp $51ae
+
+Function38009:
+	jp $52bf
+
+Function3800c:
+	jp $5c67
+
+Function3800f:
+	jp $6332
+
+Function38012:
+	jp $6dcf
+
+Function38015:
+	jp $7cd9
+
+INCBIN "base5.gb",$38018,$3c000-$38018
 
 SECTION "bankF",ROMX,BANK[$F]
-INCBIN "base5.gb",$3C000,$4000
+
+Function3C000:
+	jp $4c86
+
+Function3C003:
+	jp $4aa1
+
+INCBIN "base5.gb",$3c006,4
+
+Function3C00A:
+	jp $5074
+
+Function3C00D:
+	jp $6053
+
+Function3C010:
+	jp $6050
+
+Function3C013:
+	jp $4fb7
+
+INCBIN "base5.gb",$3C016,$40000-$3C016
 
 SECTION "bank10",ROMX,BANK[$10]
-INCBIN "base5.gb",$40000,$1FFE
+INCBIN "base5.gb",$40000,16 ; "Program bank 10"
+
+Function40010:
+	jp $4231
+
+Function40013:
+	jp $423f
+
+Function40016:
+	jp $4192
+
+Function40019:
+	jp $4964
+
+Function4001C:
+	jp $5d8c
+
+Function4001F:
+	jp $6cb5
+
+Function40022:
+	jp $6bd7
+
+Function40025:
+	jp $6e5e
+
+Function40028:
+	jp Function4003B
+
+Function4002B:
+	jp Function4003A
+
+Function4002E:
+	jp $7357
+
+Function40031:
+	jp $77a5
+
+Function40034:
+	jp $796d
+
+Function40037:
+	jp $544d
+
+Function4003A:
+	ret
+
+Function4003B:
+	ld hl,$60FE
+	ld a,b
+	and $F
+	cp $a
+	jr c,.next
+	sub $a
+	ld hl, $620e
+.next
+	swap a
+	add a,l
+	ld l,a
+	ld a,0
+	adc a,h
+	ld h,a
+	ld bc,$10
+	jp Function183
+
+INCBIN "base5.gb",$40058,$41FFE-$40058
 
 TitleScreenTextTiles: ; $10:5FFE
 incbin "base5.gb",$41FFE,$400
@@ -866,19 +1266,123 @@ SECTION "bank11",ROMX,BANK[$11]
 INCBIN "base5.gb",$44000,$4000
 
 SECTION "bank12",ROMX,BANK[$12]
-INCBIN "base5.gb",$48000,$4000
+INCBIN "base5.gb",$48000,$10 ; "Program bank 12"
+
+Function48010:
+	jp $4b58
+
+Function48013:
+	jp $518a
+
+Function48016:
+	jp $56f3
+
+Function48019:
+	jp $597b
+
+Function4801C:
+	jp $5bea
+
+Function5801F:
+	jp $5f66
+
+Function58022:
+	jp $64b9
+
+Function58025:
+	jp $6761
+
+Function58028:
+	jp $6912
+
+Function5802B:
+	jp $6d25
+
+Function5802E:
+	jp $7011
+
+INCBIN "base5.gb",$48031,$4c000-$48031
 
 SECTION "bank13",ROMX,BANK[$13]
-INCBIN "base5.gb",$4C000,$4000
+INCBIN "base5.gb",$4C000,$10 ; "Program bank 13"
+INCBIN "base5.gb",$4C010,$50000-$4C010
 
 SECTION "bank14",ROMX,BANK[$14]
-INCBIN "base5.gb",$50000,$4000
+INCBIN "base5.gb",$50000,$10 ; "Program bank 14"
+
+Function50010:
+	jp $61f1
+
+Function50013:
+	jp $6512
+
+Function50016:
+	ld [$CF7B],a
+	ld a,$D4
+	ld [$CF86],a
+	ld a,$3C
+	ld [$DE88],a
+	ld a,2
+	ld [$CF7C],a
+	xor a
+	ld [$CF7D],a
+	ld [$CF7E],a
+	ld de,Function50063
+	ld hl,$CF7F
+	ld [hl],e
+	inc hl
+	ld [hl],d
+	inc hl
+	ld [hl],BANK(Function50063)
+	call Function2D3
+	xor a
+	ld [$DE88],a
+	ret
+
+Function50043:
+	ld a,$80
+	jp Function50016
+
+Function50048:
+	ld a,1
+	ld [$CCA6],a
+	ld b,0
+	ld e,b
+	ld d,b
+	ld c,4
+	call $41e0
+	call $41fa
+	ld a,$c9 ; ret?
+	ld [$c0f0],a
+	xor a
+	ld [$DE2C],a
+	ret
+
+Function50063:
+INCBIN "base5.gb",$50063,$54000-$50063
 
 SECTION "bank15",ROMX,BANK[$15]
-INCBIN "base5.gb",$54000,$4000
+INCBIN "base5.gb",$54000,$10 ; "Program bank 15"
+
+Function54010:
+	jp $4cd8
+
+Function54013:
+	jp $53be
+
+Function54016:
+	jp $58ac
+
+Function54019:
+	jp $5d58
+
+Function5401C:
+INCBIN "base5.gb",$5401C,$58000-$5401C
 
 SECTION "bank16",ROMX,BANK[$16]
-INCBIN "base5.gb",$58000,$584B7-$58000
+INCBIN "base5.gb",$58000,$10 ; "Program bank 16"
+
+INCBIN "base5.gb",$58010,$584B7-$58010
 
 TextPointers: ; $16:44B7
 	dw Text1
@@ -1509,28 +2013,280 @@ Text60:
 INCBIN "base5.gb",$59A73,$5C000-$59A73
 
 SECTION "bank17",ROMX,BANK[$17]
-INCBIN "base5.gb",$5C000,$4000
+Function5C000:
+	jp $4416
+
+Function5C003:
+	jp $433d
+
+Function5C006:
+	jp $4ccb
+
+Function5C009:
+	jp Function5C00C
+
+Function5C00C:
+	ret
+
+Pointers5C00D:
+	dw $410b
+	dw $410f
+	dw $4113
+	dw $4117
+	dw $411b
+	dw $4121
+	dw $4125
+	dw $412b
+	dw $4131
+	dw $4137
+	dw $410b
+	dw $41ab
+	dw $41b5
+	dw $413d
+	dw $4141
+	dw $4145
+	dw $4149
+	dw $414d
+	dw $4151
+	dw $4155
+	dw $415b
+	dw $415f
+	dw $4163
+	dw $4167
+	dw $416b
+	dw $4171
+	dw $4175
+	dw $4179
+	dw $417d
+	dw $4181
+	dw $4185
+	dw $4189
+	dw $418d
+	dw $4191
+	dw $4195
+	dw $419b
+	dw $41a1
+	dw $41a5
+	dw $41bf
+	dw $41c7
+	dw $41cb
+	dw $41cf
+	dw $41d5
+	dw $41d9
+	dw $41df
+	dw $41e5
+	dw $41ef
+	dw $41f3
+	dw $41f7
+	dw $41fb
+	dw $41ff
+	dw $4209
+	dw $4203
+	dw $421d
+	dw $4221
+	dw $4219
+	dw $4229
+	dw $422d
+	dw $41c3
+	dw $4245
+	dw $4231
+	dw $4235
+	dw $4239
+	dw $423d
+	dw $4241
+	dw $4265
+	dw $426b
+	dw $4273
+	dw $427b
+	dw $4281
+	dw $4285
+	dw $4277
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4249
+	dw $424d
+	dw $4251
+	dw $4255
+	dw $4259
+	dw $425d
+	dw $4261
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4125
+	dw 0
+	dw $4125
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw 0
+	dw $4125
+	dw $4125
+	dw $4125
+	dw $4125
+	dw 0
+	dw $4289
+	dw $4293
+	dw $429d
+	dw $42a7
+	dw $42b1
+	dw $42bb
+	dw $42c5
+	dw $431f
+	dw $4329
+	dw $42cf
+	dw $42d9
+	dw $42e3
+	dw $42ed
+	dw $42f7
+	dw $4301
+	dw $430b
+	dw $4315
+	dw $4333
+
+INCBIN "base5.gb",$5C10B,$60000-$5C10B
 
 SECTION "bank18",ROMX,BANK[$18]
-INCBIN "base5.gb",$60000,$4000
+INCBIN "base5.gb",$60000,$10 ; "Program bank 18"
+
+INCBIN "base5.gb",$60010,$64000-$60010
 
 SECTION "bank19",ROMX,BANK[$19]
-INCBIN "base5.gb",$64000,$4000
+INCBIN "base5.gb",$64000,$10 ; "Program bank 19"
+
+Function64010:
+	jp $41aa
+
+Function64013:
+	jp $45c0
+
+Function64016:
+	inc hl
+	xor a
+	ld [hli],a
+	ld [hl],a
+	ret
+
+INCBIN "base5.gb",$6401b,$68000-$6401b
 
 SECTION "bank1A",ROMX,BANK[$1A]
-INCBIN "base5.gb",$68000,$4000
+INCBIN "base5.gb",$68000,$10 ; "Program bank 1A"
+
+Function68010:
+	jp $40b4
+
+INCBIN "base5.gb",$68013,$6c000-$68013
 
 SECTION "bank1B",ROMX,BANK[$1B]
-INCBIN "base5.gb",$6C000,$4000
+INCBIN "base5.gb",$6C000,$10 ; "Program bank 1B"
+
+Function6C010:
+	jp $437b
+
+INCBIN "base5.gb",$6C013,$70000-$6C013
 
 SECTION "bank1C",ROMX,BANK[$1C]
-INCBIN "base5.gb",$70000,$4000
+INCBIN "base5.gb",$70000,$10 ; "Program bank 1C"
+
+Function70010:
+	jp $420e
+
+Function70013:
+	jp $4a6c
+
+Function70016:
+	jp $4c7d
+
+INCBIN "base5.gb",$70019,$74000-$70019
 
 SECTION "bank1D",ROMX,BANK[$1D]
-INCBIN "base5.gb",$74000,$4000
+INCBIN "base5.gb",$74000,$10 ; "Program bank 1D"
+
+Function74010:
+	jp $4b15
+
+Function74013:
+	jp $4e51
+
+Function74016:
+	jp $5236
+
+Function74019:
+	jp $5353
+
+Function7401C:
+	jp $561e
+
+Function7401F:
+	jp $5B28
+
+Function74022:
+	jp $5e63
+
+Function74025:
+	jp $62b2
+
+Function74028:
+	jp $6820
+
+Function7402B:
+	jp $6b77
+
+Function7402E:
+	jp $6e7c
+
+Function74031:
+	jp $7286
+
+Function74034:
+	jp $7729
+
+Function74037:
+	jp $78ea
+
+Function7403A:
+	jp $7ae8
+
+Function7403D:
+	jp $7d3e
+
+INCBIN "base5.gb",$74040,$78000-$74040
 
 SECTION "bank1E",ROMX,BANK[$1E]
-INCBIN "base5.gb",$78000,$4000
+INCBIN "base5.gb",$78000,$10 ; "Program bank 1E"
+
+Pointers78010:
+	dw $4321
+	dw $45e4
+	dw $4aba
+	dw $4e3d
+	dw $4967
+
+Function7801A:
+	jp $5625
+
+Function7801D:
+	jp $729f
+
+Function78020:
+	jp $4023
+
+INCBIN "base5.gb",$78023,$7c000-$78023
 
 SECTION "bank1F",ROMX,BANK[$1F]
-INCBIN "base5.gb",$7C000,$4000
+INCBIN "base5.gb",$7C000,$10 ; "Program bank 1F"
+
+INCBIN "base5.gb",$7C010,$80000-$7C010
