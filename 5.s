@@ -396,7 +396,7 @@ Function334: ; $334
 	ld a,[$df00]
 	push af
 	ld a,[hl]
-	rst 32
+	bankswitch
 	ld hl,$cf78
 	ldi a,[hl]
 	ld h,[hl]
@@ -404,7 +404,7 @@ Function334: ; $334
 	ld a,[$cf7a]
 	call $c0e0
 	pop af
-	rst 32
+	bankswitch
 	ret
 
 Function35E: ; $35E
@@ -426,15 +426,15 @@ Function35E: ; $35E
 	ld [$c0d1], a
 	ldi a, [hl]
 	ld [$c0d2], a
-	ld a, $c3
+	ld a, $c3 ; jp
 	ld [$c0d0], a
 	ld a, [hl]
 	pop de
 	pop hl
-	rst 32
+	bankswitch
 	call $c0d0
 	pop af
-	rst 32
+	bankswitch
 	ret
 
 INCBIN "base5.gb",$38B,$4FA-$38B

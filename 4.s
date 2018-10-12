@@ -349,14 +349,14 @@ Function472: ; $472
 	di
 	ld sp,$FFFE
 	ld a,1
-	rst $20
+	bankswitch
 	jp $4000
 
 Function47C: ; $47C
 	di
 	ld sp,$FFFE
 	ld a,1
-	rst $20
+	bankswitch
 	jp $401C
 
 INCBIN "base4.gb",$486,$CAD-$486
