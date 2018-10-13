@@ -1499,10 +1499,56 @@ Function5E15:
 INCBIN "base3.gb",$5E3C,$8000-$5E3C
 
 SECTION "bank2",ROMX,BANK[$2]
-INCBIN "base3.gb",$8000,$4000
+Function8000:
+	jp $71cf
+Function8003:
+	jp $70ff
+Function8006:
+	jp $7a53
+Function8009:
+	jp Function800F
+Function800C:
+	jp $7b1d
+Function800F:
+
+INCBIN "base3.gb",$800F,$C000-$800F
 
 SECTION "bank3",ROMX,BANK[$3]
-INCBIN "base3.gb",$C000,$F300-$C000
+FunctionC000:
+	jp $453B
+FunctionC003:
+	jp $4977
+FunctionC006:
+	jp $4d45
+FunctionC009:
+	jp $56ef
+FunctionC00C:
+	jp $5ddf
+FunctionC00F:
+	jp $5ded
+FunctionC012:
+	jp $5dfb
+FunctionC015:
+	jp $5f17
+FunctionC018:
+	jp $63e6
+FunctionC01B:
+	ld a,2
+	ld [$CCFD],a
+	call $40aa
+	ld b,0
+	ret
+
+FunctionC026:
+	ld a,3
+	ld [$CCFD],a
+	xor a
+	ld [$CCF6],a
+	ld [$CCF1],a
+	ld b,2
+	ret
+
+INCBIN "base3.gb",$C035,$F300-$C035
 
 DataF300:
 	dw .label1
@@ -1586,7 +1632,16 @@ incbin "base3.gb",$F59A,$F5A6-$F59A
 incbin "base3.gb",$F5A6,$10000-$F5A6
 
 SECTION "bank4",ROMX,BANK[$4]
-INCBIN "base3.gb",$10000,$10073-$10000
+Function10000:
+	jp $4073
+Function10003:
+	jp $408b
+Function10006:
+	jp $4dc7
+Function10009:
+	jp $7dbb
+
+INCBIN "base3.gb",$1000c,$10073-$1000c
 
 LoadMegamanSprite: ; $4:4073
 	ld de,$8000
@@ -1614,12 +1669,17 @@ INCBIN "base3.gb",$13BD1,20*18
 INCBIN "base3.gb",$13D39,$14000-$13D39
 
 SECTION "bank5",ROMX,BANK[$5]
-INCBIN "base3.gb",$14000,$4000
+Function14000:
+	jp $7e0a
+INCBIN "base3.gb",$14003,$18000-$14003
 
 SECTION "bank6",ROMX,BANK[$6]
 
+Function18000:
 	jp Function18009
+Function18003:
 	jp Function18ABC
+Function18006:
 	jp $779E
 
 Function18009: ; $6:4009
@@ -2717,25 +2777,187 @@ SECTION "bank8",ROMX,BANK[$8]
 INCBIN "base3.gb",$20000,$4000
 
 SECTION "bank9",ROMX,BANK[$9]
-INCBIN "base3.gb",$24000,$4000
+Function24000:
+	jp $45D1
+Function24003:
+	jp $49E7
+Function24006:
+	jp $4C03
+Function24009:
+	jp $4D5E
+Function2400C:
+	jp $4FAD
+Function2400F:
+	jp $526F
+Function24012:
+	jp $5418
+Function24015:
+	jp $55E1
+Function24018:
+	jp $575B
+Function2401B:
+	jp $5DFB
+Function2401E:
+	jp $6013
+Function24021:
+	jp $60A4
+Function24024:
+	jp $61C5
+Function24027:
+	jp $6330
+Function2402A:
+	jp $641B
+Function2402D:
+	jp $6622
+Function24030:
+	jp $6866
+Function24033:
+	jp $6BB7
+Function24036:
+	jp $7127
+Function24039:
+	jp $716D
+Function2403C:
+	jp $7337
+Function2403F:
+	jp $7483
+Function24042:
+	jp $7638
+Function24045:
+	jp $7906
+Function24048:
+	jp $7ADD
+
+INCBIN "base3.gb",$2404B,$28000-$2404B
 
 SECTION "bankA",ROMX,BANK[$A]
-INCBIN "base3.gb",$28000,$4000
+Function28000:
+	jp $74c1
+INCBIN "base3.gb",$28003,$2c000-$28003
 
 SECTION "bankB",ROMX,BANK[$B]
-INCBIN "base3.gb",$2C000,$4000
+Function2C000:
+	jp $402f
+Function2C003:
+	jp $4272
+Function2C006:
+	jp $4851
+INCBIN "base3.gb",$2C009,$30000-$2C009
 
 SECTION "bankC",ROMX,BANK[$C]
-INCBIN "base3.gb",$30000,$4000
+Pointers30000:
+	dw Data30018
+	dw $40c8
+	dw $40cd
+	dw $40dc
+	dw $40d7
+	dw $40d2
+	dw $40e6
+	dw $40f5
+	dw $40f0
+	dw $40e1
+	dw $40e1
+	dw $40eb
+
+Data30018:
+INCBIN "base3.gb",$30018,$34000-$30018
 
 SECTION "bankD",ROMX,BANK[$D]
-INCBIN "base3.gb",$34000,$4000
+Function34000:
+	jp $7D00
+Function34003:
+	jp $7DBA
+Function34006:
+	jp $453D
+Function34009:
+	jp $4795
+Function3400C:
+	jp $4889
+Function3400F:
+	jp $4B38
+Function34012:
+	jp $4D73
+Function34015:
+	jp $4EF3
+Function34018:
+	jp $50C8
+Function3401B:
+	jp $565A
+Function3401E:
+	jp $7E3C
+Function34021:
+	jp $57E0
+Function34024:
+	jp $5A42
+Function34027:
+	jp $5D08
+Function3402A:
+	jp $5EA4
+Function3402D:
+	jp $6074
+Function34030:
+	jp $61FE
+Function34033:
+	jp $642D
+Function34036:
+	jp $65AB
+Function34039:
+	jp $66DF
+Function3403C:
+	jp $67D1
+Function3403F:
+	jp $6AE5
+Function34042:
+	jp $6BE8
+Function34045:
+	jp $7A25
+Function34048:
+	jp $6E33
+Function3404B:
+	jp $70D5
+Function3404E:
+	jp $73D8
+Function34051:
+	jp $7483
+Function34054:
+	jp $74FC
+
+INCBIN "base3.gb",$34057,$38000-$34057
 
 SECTION "bankE",ROMX,BANK[$E]
-INCBIN "base3.gb",$38000,$4000
+Function38000:
+	jp $4566
+Function38003:
+	jp $488b
+Function38006:
+	jp $4d31
+Function38009:
+	jp $52f0
+Function3800C:
+	jp $6f94
+Function3800F:
+	jp $581a
+
+INCBIN "base3.gb",$38012,$3c000-$38012
 
 SECTION "bankF",ROMX,BANK[$F]
-INCBIN "base3.gb",$3C000,$3C65B-$3C000
+Function3C000:
+	jp $4105
+Function3C003:
+	jp $403e
+Function3C006:
+	jp $48a7
+Function3C009:
+	jp $4d7e
+Function3C00C:
+	jp $55e6
+Function3C00F:
+	jp $5432
+Function3C012:
+	jp $5b25
+Function3C015:
+	jp $5b5c
+INCBIN "base3.gb",$3C018,$3C65B-$3C018
 
 DrawShutters:
 	ld [$CC81],a ; bug?

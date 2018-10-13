@@ -2573,7 +2573,73 @@ INCBIN "base1.gb",$8082,$BCA2-$8082
 	freespace $BCA2
 
 SECTION "bank3",ROMX,BANK[$3]
-INCBIN "base1.gb",$C000,$FBE5-$C000
+FunctionC000:
+	jp $55db
+
+FunctionC003:
+	jp $57cf
+
+FunctionC006:
+	jp $5982
+
+FunctionC009:
+	jp $5b5f
+
+FunctionC00C:
+	jp $5cac
+
+FunctionC00F:
+	jp $6b49
+
+FunctionC012:
+	jp $6d19
+
+FunctionC015:
+	jp $6de7
+
+FunctionC018:
+	jp $6ed9
+
+FunctionC01B:
+	jp $72e1
+
+FunctionC01E:
+	jp $7491
+
+FunctionC021:
+	jp $757b
+
+FunctionC024:
+	jp $4744
+
+FunctionC027:
+	jp $52cd
+
+FunctionC02A:
+	jp $4d5b
+
+FunctionC02D:
+	jp $512c
+
+FunctionC030:
+	jp $5e79
+
+FunctionC033:
+	jp $62cc
+
+FunctionC036:
+	jp $6537
+
+FunctionC039:
+	jp $69a3
+
+FunctionC03C:
+	jp $769f
+
+FunctionC03F:
+	jp $796b
+
+INCBIN "base1.gb",$C042,$FBE5-$C042
 
 	freespace $FBE5
 
@@ -2927,17 +2993,93 @@ INCBIN "base1.gb",$20008,$23829-$20008
 	freespace $23829
 
 SECTION "bank9",ROMX,BANK[$9]
-INCBIN "base1.gb",$24000,$27D32-$24000
+
+Function24000:
+	jp $474A
+Function24003:
+	jp $4AE6
+Function24006:
+	jp $4BC0
+Function24009:
+	jp $4DDD
+Function2400C:
+	jp $4ED7
+Function2400F:
+	jp $5151
+Function24012:
+	jp $53BF
+Function24015:
+	jp $58D4
+Function24018:
+	jp $5966
+Function2401B:
+	jp $50E8
+Function2401E:
+	jp $551D
+Function24021:
+	jp $5753
+Function24024:
+	jp $5B73
+Function24027:
+	jp $5C5A
+Function2402A:
+	jp $61CB
+Function2402D:
+	jp $6575
+Function24030:
+	jp $6639
+Function24033:
+	jp $6A79
+Function24036:
+	jp $6CFE
+Function24039:
+	jp $73DD
+Function2403C:
+	jp $746A
+Function2403F:
+	jp $793F
+Function24042:
+	jp $7239
+Function24045:
+	jp $7B36
+
+INCBIN "base1.gb",$24048,$27D32-$24048
 
 	freespace $27D32
 
 SECTION "bankA",ROMX,BANK[$A]
-INCBIN "base1.gb",$28000,$2B20D-$28000
+
+Function28000:
+	jp $4090
+
+Function28003:
+	jp $4331
+
+Function28006:
+	jp $40eb
+
+Function28009:
+	jp $40ed
+
+Function2800C:
+	jp $40e1
+
+Function2800F:
+	jp $4401
+
+Function28012:
+	jp $4325
+
+INCBIN "base1.gb",$28015,$2B20D-$28015
 
 	freespace $2B20D
 
 SECTION "bankB",ROMX,BANK[$B]
-INCBIN "base1.gb",$2C000,$2D5D0-$2C000
+
+Function2C000:
+	jp $4516
+
+INCBIN "base1.gb",$2C003,$2D5D0-$2C003
 
 	freespace $2D5D0
 
@@ -2971,12 +3113,43 @@ INCBIN "base1.gb",$30016,$33395-$30016
 	freespace $33395
 
 SECTION "bankD",ROMX,BANK[$D]
-INCBIN "base1.gb",$34000,$36311-$34000
+
+Section34000:
+	jp $48d9
+
+Section34003:
+	jp $4dc9
+
+Section34006:
+	jp $4f06
+
+Section34009:
+	jp $50af
+
+Section3400C:
+	jp $51bb
+
+Section3400F:
+	jp $5a76
+
+Section34012:
+	jp $5ec2
+
+Section34015:
+	jp $61c3
+
+Section34018:
+	jp $625c
+
+INCBIN "base1.gb",$3401b,$36311-$3401b
 
 	freespace $36311
 
 SECTION "bankE",ROMX,BANK[$E]
-INCBIN "base1.gb",$38000,$3BBAF-$38000
+Section38000:
+	jp $455b
+
+INCBIN "base1.gb",$38003,$3BBAF-$38003
 
 	freespace $3BBAF
 

@@ -9,6 +9,10 @@ bankswitch1: MACRO
 	rst $20
 ENDM
 
+freespace: MACRO
+	incbin "basebc.gb",\1,(\1 / $4000 + 1) * $4000 - \1
+ENDM
+
 SECTION "func0",ROM0[0]
 Func0:
 	ld sp,$FFFE
@@ -799,28 +803,393 @@ SECTION "bank6",ROMX,BANK[$6]
 INCBIN "basebc.gb",$18000,$4000
 
 SECTION "bank7",ROMX,BANK[$7]
-INCBIN "basebc.gb",$1C000,$4000
+Function1C000:
+	jp $6e62
+
+Function1C003:
+	jp $6d92
+
+Function1C006:
+	jp $7709
+
+Function1C009:
+	jp $4021
+
+Function1C00C:
+	jp $77e7
+
+Function1C00F:
+	jp $7834
+
+Function1C012:
+	jp $77e6
+
+Function1C015:
+	jp $77d3
+
+Function1C018:
+	jp $7b56
+
+Function1C01B:
+	jp $7b56
+
+Function1C01E:
+	jp $7b56
+
+INCBIN "basebc.gb",$1C021,$20000-$1C021
 
 SECTION "bank8",ROMX,BANK[$8]
 INCBIN "basebc.gb",$20000,$4000
 
 SECTION "bank9",ROMX,BANK[$9]
-INCBIN "basebc.gb",$24000,$4000
+Pointer24000:
+	dw Pointers24008
+Pointer24002:
+	dw Data2406D
+Function24004:
+	jp $7819
+Byte24007:
+	db $32
+Pointers24008:
+	dw $408B
+	dw $409D
+	dw $409D
+	dw $409D
+	dw $40AF
+	dw $47A1
+	dw $47B3
+	dw $40C1
+	dw $4DF7
+	dw $54A3
+	dw $54B5
+	dw $54C7
+	dw $54D9
+	dw $54EB
+	dw $54FD
+	dw $550F
+	dw $5521
+	dw $5533
+	dw $5C88
+	dw $4DF7
+	dw $686C
+	dw $687E
+	dw $6890
+	dw $4E6E
+	dw $4E80
+	dw $5261
+	dw $5273
+	dw $4DF7
+	dw $4E6E
+	dw $4E6E
+	dw $4E6E
+	dw $4E6E
+	dw $5FFB
+	dw $600D
+	dw $601F
+	dw $6031
+	dw $6043
+	dw $64D4
+	dw $64E6
+	dw $6824
+	dw $6836
+	dw $6848
+	dw $685A
+	dw $6DF0
+	dw $4DF7
+	dw $6DF0
+	dw $6E02
+	dw $6E14
+	dw $6E26
+	dw $4DF7
+	db $FF
+
+Data2406D:
+
+INCBIN "basebc.gb",$2406d,$28000-$2406d
 
 SECTION "bankA",ROMX,BANK[$A]
-INCBIN "basebc.gb",$28000,$4000
+Function28000:
+	jp $432e
+
+Function28003:
+	jp $431b
+
+Function28006:
+	jp $424f
+
+Function28009:
+	jp $4211
+
+Function2800C:
+	jp $4202
+
+Function2800F:
+	jp $4135
+
+Function28012:
+	jp $5e6e
+
+Function28015:
+	jp $7d83
+
+Function28018:
+	jp $401b
+
+INCBIN "basebc.gb",$2801b,$2c000-$2801b
 
 SECTION "bankB",ROMX,BANK[$B]
-INCBIN "basebc.gb",$2C000,$4000
+
+Pointer2C000:
+	dw Pointers2C007
+Pointer2C002:
+	dw $7868
+Function2C004:
+	jp $78da
+Pointers2C007:
+	dw Data2C015
+	dw Data2C01E
+	dw Data2C02B
+	dw Data2C038
+	dw Data2C04A
+	dw Data2C053
+	dw Data2C041
+
+Data2C015:
+	db $04,$00,$5C,$40,$76,$04,$9C,$40,$00
+Data2C01E:
+	db $04,$00,$5C,$40,$12,$04,$FC,$47,$49,$16,$3C,$56,$00
+Data2C02B:
+	db $04,$00,$5C,$40,$12,$04,$FC,$47,$5C,$16,$1C,$49,$00
+Data2C038:
+	db $04,$00,$5C,$40,$73,$04,$2C,$62,$00
+Data2C041:
+	db $04,$00,$5C,$40,$74,$04,$5C,$69,$00
+Data2C04A:
+	db $04,$00,$5C,$40,$75,$04,$9C,$70,$00
+Data2C053:
+	db $04,$00,$5C,$40,$76,$04,$CC,$5A,$00
+
+INCBIN "basebc.gb",$2C05C,$30000-$2C05C
 
 SECTION "bankC",ROMX,BANK[$C]
-INCBIN "basebc.gb",$30000,$4000
+Pointer30000:
+	dw $4039
+
+Function30002:
+	jp $4038
+
+Function30005:
+	jp $737f
+
+Function30008:
+	jp Function300D3
+
+Function3000B:
+	jp Function300D9
+
+Function3000E:
+	jp Function300DA
+
+Function30011:
+	jp Function30038
+
+Pointers30014:
+	dw $4727
+	dw $48b0
+	dw $4ffa
+	dw $53e0
+	dw $560b
+	dw $57b0
+	dw $58a1
+	dw $5d78
+	dw $5e99
+	dw $5ff6
+	dw $607f
+	dw $66db
+	dw $68a8
+	dw $68f1
+	dw $7c61
+	dw $6bda
+	dw $78ca
+	dw $7af0
+
+Function30038:
+	ret
+
+Pointers30039:
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw $485E
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300DB
+	dw Function300D3
+	dw Function300DB
+	dw Function300DB
+	dw $4DF4
+	dw Function300DB
+	dw $52A0
+	dw $5415
+	dw $56EE
+	dw $5883
+	dw $5CB5
+	dw Function300DB
+	dw Function300DB
+	dw $5E62
+	dw $605F
+	dw $64E1
+	dw $678F
+	dw $7C61
+	dw $6BB6
+	dw Function300DB
+	dw Function300DB
+
+Function300D3:
+	ld [$DF52],a
+	jp Function153
+
+Function300D9:
+	ret
+
+Function300DA:
+	ret
+
+Function300DB:
+
+INCBIN "basebc.gb",$300db,$34000-$300db
 
 SECTION "bankD",ROMX,BANK[$D]
 INCBIN "basebc.gb",$34000,$4000
 
 SECTION "bankE",ROMX,BANK[$E]
-INCBIN "basebc.gb",$38000,$4000
+INCBIN "basebc.gb",$38000,$3c000-$38000
 
 SECTION "bankF",ROMX,BANK[$F]
-INCBIN "basebc.gb",$3C000,$4000
+Pointer3C000:
+	dw $51B7
+
+Function3C002:
+	jp Function3C097
+Function3C005:
+	jp $4a3c
+Function3C008:
+	jp $4a54
+Function3C00B:
+	jp $4b32
+Function3C00E:
+	jp $4b67
+Function3C011:
+	jp $4b79
+Function3C014:
+	jp $7149
+Function3C017:
+	jp $6f5a
+Function3C01A:
+	jp $4023
+Function3C01D:
+	jp $6f4e
+Function3C020:
+	jp $402f
+Function3C023:
+	ld hl,$4ddf
+	ld bc,$270
+	ld de,$9200
+	jp Function15F
+Function3C02F:
+	ld a,$c9
+	ld [$FF80],a
+	xor a
+	ld [$FF24],a
+	ld [$FF25],a
+	ld [$FF26],a
+	ld [$FF41],a
+	ld [$FF0F],a
+	ld [$FFFF],a
+	call Function159
+	ld hl,$8000
+	ld bc,$2000
+	xor a
+	call Function162
+	ld a,$a0
+	ld [$FF4B],a
+	ld [$FF4A],a
+	ld a,0
+	ld [$FF47],a
+	ld [$FF48],a
+	ld [$FF49],a
+	ld [$C0D9],a
+	call $416A
+	call Function2D0
+	call $41D3
+	ld hl,Data3C083
+	ld de,$9900
+	ld bc,$14
+	call Function15F
+	ld a,$e4
+	ld [$C0D9],a
+	ld b,$78
+.loop
+	push bc
+	call Function1B9
+	pop bc
+	dec b
+	jr nz,.loop
+	ret
+
+Data3C083:
+INCBIN "basebc.gb",$3c083,$3c097-$3c083
+Function3C097:
+INCBIN "basebc.gb",$3c097,$3fc50-$3c097
+
+	freespace $3fc50
