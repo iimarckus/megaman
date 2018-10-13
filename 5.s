@@ -1139,7 +1139,6 @@ Function3C013:
 INCBIN "base5.gb",$3C016,$40000-$3C016
 
 SECTION "bank10",ROMX,BANK[$10]
-INCBIN "base5.gb",$40000,16 ; "Program bank 10"
 
 Function40010:
 	jp $4231
@@ -1266,7 +1265,6 @@ SECTION "bank11",ROMX,BANK[$11]
 INCBIN "base5.gb",$44000,$4000
 
 SECTION "bank12",ROMX,BANK[$12]
-INCBIN "base5.gb",$48000,$10 ; "Program bank 12"
 
 Function48010:
 	jp $4b58
@@ -1304,11 +1302,9 @@ Function5802E:
 INCBIN "base5.gb",$48031,$4c000-$48031
 
 SECTION "bank13",ROMX,BANK[$13]
-INCBIN "base5.gb",$4C000,$10 ; "Program bank 13"
 INCBIN "base5.gb",$4C010,$50000-$4C010
 
 SECTION "bank14",ROMX,BANK[$14]
-INCBIN "base5.gb",$50000,$10 ; "Program bank 14"
 
 Function50010:
 	jp $61f1
@@ -1362,7 +1358,6 @@ Function50063:
 INCBIN "base5.gb",$50063,$54000-$50063
 
 SECTION "bank15",ROMX,BANK[$15]
-INCBIN "base5.gb",$54000,$10 ; "Program bank 15"
 
 Function54010:
 	jp $4cd8
@@ -1380,7 +1375,6 @@ Function5401C:
 INCBIN "base5.gb",$5401C,$58000-$5401C
 
 SECTION "bank16",ROMX,BANK[$16]
-INCBIN "base5.gb",$58000,$10 ; "Program bank 16"
 
 INCBIN "base5.gb",$58010,$584B7-$58010
 
@@ -2160,12 +2154,10 @@ Pointers5C00D:
 INCBIN "base5.gb",$5C10B,$60000-$5C10B
 
 SECTION "bank18",ROMX,BANK[$18]
-INCBIN "base5.gb",$60000,$10 ; "Program bank 18"
 
 INCBIN "base5.gb",$60010,$64000-$60010
 
 SECTION "bank19",ROMX,BANK[$19]
-INCBIN "base5.gb",$64000,$10 ; "Program bank 19"
 
 Function64010:
 	jp $41aa
@@ -2183,7 +2175,6 @@ Function64016:
 INCBIN "base5.gb",$6401b,$68000-$6401b
 
 SECTION "bank1A",ROMX,BANK[$1A]
-INCBIN "base5.gb",$68000,$10 ; "Program bank 1A"
 
 Function68010:
 	jp $40b4
@@ -2191,7 +2182,6 @@ Function68010:
 INCBIN "base5.gb",$68013,$6c000-$68013
 
 SECTION "bank1B",ROMX,BANK[$1B]
-INCBIN "base5.gb",$6C000,$10 ; "Program bank 1B"
 
 Function6C010:
 	jp $437b
@@ -2199,7 +2189,6 @@ Function6C010:
 INCBIN "base5.gb",$6C013,$70000-$6C013
 
 SECTION "bank1C",ROMX,BANK[$1C]
-INCBIN "base5.gb",$70000,$10 ; "Program bank 1C"
 
 Function70010:
 	jp $420e
@@ -2213,7 +2202,6 @@ Function70016:
 INCBIN "base5.gb",$70019,$74000-$70019
 
 SECTION "bank1D",ROMX,BANK[$1D]
-INCBIN "base5.gb",$74000,$10 ; "Program bank 1D"
 
 Function74010:
 	jp $4b15
@@ -2266,7 +2254,6 @@ Function7403D:
 INCBIN "base5.gb",$74040,$78000-$74040
 
 SECTION "bank1E",ROMX,BANK[$1E]
-INCBIN "base5.gb",$78000,$10 ; "Program bank 1E"
 
 Pointers78010:
 	dw $4321
@@ -2287,6 +2274,5 @@ Function78020:
 INCBIN "base5.gb",$78023,$7c000-$78023
 
 SECTION "bank1F",ROMX,BANK[$1F]
-INCBIN "base5.gb",$7C000,$10 ; "Program bank 1F"
 
 INCBIN "base5.gb",$7C010,$80000-$7C010
